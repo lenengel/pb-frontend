@@ -21,7 +21,7 @@ var orders= require('./routes/orders');
 // instantiates Express
 var app = express();
 
-console.log("Service Portal 1.0");
+console.log("PB-Fronted started...");
 
 // configure passport
 passport.use(new LocalStrategy( {

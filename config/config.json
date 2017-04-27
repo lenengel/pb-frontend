@@ -3,7 +3,7 @@
         "title" : "PB-",
         "icon" : "https://service.microtronics.at/img/favicon.ico",
         "copyright": "Copyright (c) PB",
-        "port": "17320",
+        "port": "80",
         "api": {
             "url" : "https://35.187.56.96:8080/"
         }
