@@ -5,10 +5,9 @@
   </div>
   <div class="m-6 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4 mt-8 product" v-else>
     <div v-for="product in products" :key="product.id" class="border rounded-lg bg-gray-100 hover:shadow-lg shadow-md">
-      <nuxt-link :to="`/products/${product.attributes.slug}`">
-        <div class="rounded-t-lg bg-white pt-2 pb-2">
-          <img v-lazy class="crop mx-auto" src="~/assets/img/placeholder-image.png">
-          <!--//:data-src="`${getStrapiMedia(product.attributes.image.formats.thumbnail.url)}`"-->
+      <nuxt-link :to="`/products/${product.id}`">
+        <div class="rounded-t-lg bg-white pt-2 pb-2">          
+          <img v-lazy class="crop mx-auto" src="~/assets/img/placeholder-image.png" :data-src="`${getStrapiMedia(product.attributes.image.data.attributes.formats.thumbnail.url)}`">
         </div>
         <div class="pl-4 pr-4 pb-4 pt-4 rounded-lg">
           <h4 class="mt-1 font-semibold text-base leading-tight truncate text-gray-700">{{product.attributes.title}} sticker</h4>
@@ -36,7 +35,7 @@ export default {
       console.log("### products mounted");    
     
   },
-  /*directives: {
+  directives: {
     lazy: {
       inserted: (el) => {
         const observer = new IntersectionObserver((entries, observer) => {
@@ -51,7 +50,7 @@ export default {
         observer.observe(el);
       },
     },
-  },*/
+  },
   methods: {
     getStrapiMedia
   }

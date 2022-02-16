@@ -17,12 +17,10 @@ export default {
   },
   async mounted() {
     try {
-      let result = await this.$strapi.$products.find()
-      
-      this.products = result.data;
-      console.log("products: ",this.products);
+      this.products = (await this.$strapi.$products.find({ populate: '*'})).data
+
+      console.log("###", this.products);
       debugger;
-    
     } catch (error) {
       this.error = error
     }
