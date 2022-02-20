@@ -19,8 +19,6 @@ export default {
     try {
       this.products = (await this.$strapi.$products.find({ populate: '*'})).data
 
-      console.log("###", this.products);
-      debugger;
     } catch (error) {
       this.error = error
     }

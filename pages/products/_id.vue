@@ -2,7 +2,7 @@
 <div v-if="this.product !== null">
   <div class="m-6 mt-56 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 mt-8">
     <div class="rounded-t-lg pt-2 pb-2">
-      <img :src="`${getStrapiMedia(product.attributes.image.data.attributes.formats.thumbnail.url)}`" class="m-auto">
+      <img :src="image" class="m-auto">
     </div>
     <div class="w-full p-5 flex flex-col justify-between">
       <div>
@@ -11,7 +11,7 @@
       </div>
 
       <button v-if="product.status === 'published'" class="snipcart-add-item mt-4 bg-white border border-gray-200 d hover:shadow-lg text-gray-700 font-semibold py-2 px-4 rounded shadow" :data-item-id="product.attributes.id" :data-item-price="product.attributes.price"
-        :data-item-url="`${this.$route.fullPath}`" :data-item-description="product.attributes.description" :data-item-image="`${getStrapiMedia(product.attributes.image.data.attributes.formats.thumbnail.url)}`" :data-item-name="product.attributes.title" v-bind="customFields">
+        :data-item-url="`${this.$route.fullPath}`" :data-item-description="product.attributes.description" :data-item-image="`${getStrapiMedia(product.attributes.image)}`" :data-item-name="product.attributes.title" v-bind="customFields">
         Add to cart
       </button>
 
@@ -60,25 +60,13 @@ export default {
   computed: {
     customFields() {
       return {};
-      /*return this.product["Custom_field"]
-        .map(({
-          title,
-          required,
-          options
-        }) => ({
-          name: title,
-          required,
-          options
-        }))
-        .map((x, index) => Object.entries(x)
-          .map(([key, value]) => ({
-            [`data-item-custom${index + 1}-${key.toString().toLowerCase()}`]: value
-          })))
-        .reduce((acc, curr) => acc.concat(curr), [])
-        .reduce((acc, curr) => ({
-          ...acc,
-          ...curr
-        }))*/
+      
+    },
+    image() {
+      if(!this.product.attributes.image.data)
+        return "~/assets/img/placeholder-image.png";
+      
+      return "http://localhost:1337" + this.product.attributes.image.data.attributes.formats.thumbnail.url;
     }
   },
   methods: {
