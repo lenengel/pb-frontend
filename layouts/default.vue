@@ -1,14 +1,14 @@
 <template>
 <div>
 <NavBar />
+<IntroSlider />
 <div class="flex justify-center bg-white">
   <div class="max-w-screen-lg flex flex-col min-h-screen w-full">    
     <Buttons />    
-    <Nuxt class="flex-grow" />
-    <Footer />
-  </div>
-  <div hidden id="snipcart" data-api-key="ODhhNWUxOGEtNTk0OC00OTQwLWJkOWMtM2M1ZmNjODU1ZDJhNjM3MzMyNzM0NjM1OTMyNjcz"></div>
+    <Nuxt class="flex-grow" />    
+  </div>  
 </div>
+<Footer />
 </div>
 </template>
 
@@ -16,12 +16,14 @@
 import NavBar from './../components/Navbar'
 import Footer from './../components/Footer'
 import Buttons from './../components/Buttons'
+import IntroSlider from './../components/Introslider'
 
 export default {
   components: {
     NavBar,
     Footer,
-    Buttons
+    Buttons,
+    IntroSlider    
   }
 }
 </script>

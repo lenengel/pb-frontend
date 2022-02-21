@@ -5,7 +5,7 @@
 			<div class="flex w-full md:w-1/2 justify-center md:justify-start">
         <nuxt-link to="/">
           <span class="emoji">
-            <img src="~/assets/pembeef_header_logo.svg" class="logo" height="120" width="120" />
+            <img src="~/assets/pembeef_header_logo.svg" class="logo" height="80" width="80" />
           </span>
         </nuxt-link>
 			</div>
@@ -22,13 +22,12 @@
 					</li>
 					<li class="mr-3">
 						<a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">Kontakt</a>
-					</li>
-          <li>
-            
-          </li>
+					</li>          
 				</ul>
         <div class="ml-20">
-          <svg class="h-8 w-8 text-black"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <circle cx="9" cy="21" r="1" />  <circle cx="20" cy="21" r="1" />  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" /></svg>
+          <a href="#">
+            <Cart />
+          </a>
         </div>
         
 			</div>
@@ -37,9 +36,8 @@
 </div>
 </template>
 
-
 <script>
-import Cart from "./icons/cart.vue"
+import Cart from "~/components/icons/cart.vue";
 
 export default {
   components: {
@@ -49,10 +47,4 @@ export default {
 </script>
 
 <style>
-
-.pb-header {
-  border-top: 1px solid rgba(0,0,0,.1);
-  border-bottom: 1px solid rgba(0,0,0,.1);
-  background-color: rgb(244, 244, 244)
-}
 </style>

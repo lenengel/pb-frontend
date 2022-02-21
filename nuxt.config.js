@@ -4,15 +4,9 @@ export default {
    ** See https://nuxtjs.org/api/configuration-target
    */
   target: 'static',
-  /*
-   ** Headers of the page
-   ** See https://nuxtjs.org/api/configuration-head
-   */
-
-  //  <script src="https://cdn.snipcart.com/themes/v3.0.16/default/snipcart.js"></script>
 
   head: {
-    title: "Buy stickers with Strapi, Nuxt.js and Snipcart",
+    title: "PEMBEEF | BioBauernhof Pemperreith",
     meta: [{
         charset: 'utf-8'
       },
@@ -23,7 +17,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: "e-commerce starter using Strapi, Nuxt.js and Snipcart"
+        content: "PEMBEEF BIO Rindfleisch"
       }
     ],
     link: [
@@ -34,11 +28,10 @@ export default {
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Questrial&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Old+Standard+TT&family=Questrial&display=swap",
       }
     ],
-    script: [{
-      src: 'https://cdn.snipcart.com/themes/v3.0.16/default/snipcart.js'
+    script: [{      
     }]
   },
   /*

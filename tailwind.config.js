@@ -8,7 +8,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["'Questrial'", "sans-serif"]
+        sans: ["'Questrial'", "sans-serif"],
+        serif: ["'Old Standard TT'", "serif"],
       }
     }
   },

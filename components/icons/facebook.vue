@@ -1,15 +1,4 @@
+
 <template>
-  <svg
-    id="Bold"
-    enable-background="new 0 0 24 24"
-    viewBox="0 0 24 24"
-    height="20px"
-    width="20px"
-    xmlns="http://www.w3.org/2000/svg"
-    class="fill-current text-gray-600"
-  >
-    <path
-      d="m15.997 3.985h2.191v-3.816c-.378-.052-1.678-.169-3.192-.169-3.159 0-5.323 1.987-5.323 5.639v3.361h-3.486v4.266h3.486v10.734h4.274v-10.733h3.345l.531-4.266h-3.877v-2.939c.001-1.233.333-2.077 2.051-2.077z"
-    />
-  </svg>
+  <svg class="h-6 w-6"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
 </template>
