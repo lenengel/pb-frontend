@@ -1,24 +1,6 @@
-
-
 <template>
-
-
-
   <footer class="text-center lg:text-left bg-gray-100 text-gray-600">
-  <div class="flex justify-center items-center lg:justify-between p-6 border-b border-gray-300">
-    <div class="mr-12 hidden lg:block">
-      <span>Platzhalter</span>
-    </div>
-    <div class="flex justify-center">
-      <a href="https://www.facebook.com/pembeef/" target="_blank" class="mr-6 text-gray-600">
-        <Facebook />
-      </a>
-      <a href="https://www.instagram.com/pembeef/" target="_blank" class="mr-6 text-gray-600">
-        <Instagram />
-      </a>
-      
-    </div>
-  </div>
+
   <div class="mx-6 py-10 text-center md:text-left">
     <div class="grid grid-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
       <div class="">
