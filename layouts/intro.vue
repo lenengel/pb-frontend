@@ -2,22 +2,23 @@
 div
   ToolBar
   NavBar
-  .flex.justify-center.bg-white
-    .max-w-screen-lg.flex.flex-col.w-full
-      nuxt
+  Slider
+  nuxt
   Footer
 </template>
 
 <script>
 import ToolBar from './../components/Header/Toolbar'
 import NavBar from './../components/Header/Navbar'
+import Slider from './../components/intro/slider'
 import Footer from './../components/Footer'
 
 export default {
   components: {
     ToolBar,
     NavBar,
-    Footer,    
+    Footer,
+    Slider,
   }
 }
 </script>

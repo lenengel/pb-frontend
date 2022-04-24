@@ -29,7 +29,12 @@ export default {
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Old+Standard+TT&family=Questrial&display=swap",
-      }
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap",
+      },
+      
     ],
     script: [{      
     }]

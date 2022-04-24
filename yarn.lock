@@ -8550,6 +8550,11 @@
     "serialize-javascript" "^3.1.0"
     "source-map" "0.5.6"
 
+"vue-smooth-scroll@^1.0.13":
+  "integrity" "sha1-dyY3KPZZ212mH8O8J4mw6zzg8bs="
+  "resolved" "https://registry.npmjs.org/vue-smooth-scroll/-/vue-smooth-scroll-1.0.13.tgz"
+  "version" "1.0.13"
+
 "vue-style-loader@^4.1.0", "vue-style-loader@^4.1.3":
   "integrity" "sha512-sFuh0xfbtpRlKfm39ss/ikqs9AbKCoXZBpHeVZ8Tx650o0k0q/YCM7FRvigtxpACezfq6af+a7JeqVTWvncqDg=="
   "resolved" "https://registry.npmjs.org/vue-style-loader/-/vue-style-loader-4.1.3.tgz"
@@ -8575,6 +8580,11 @@
   "integrity" "sha512-x2284lgYvjOMj3Za7kqzRcUSxBboHqtgRE2zlos1qWaOye5yUmHn42LB1250NJBLRwEcdrB0JRwyPTEPhfQjiQ=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-2.6.14.tgz"
   "version" "2.6.14"
+
+"vue2-smooth-scroll@^1.6.0":
+  "integrity" "sha512-4MvpWJf8jsJUEy9m1OnlzNJj/a3Tj1C3wgRKXpCIGiGFEVrmRppgVAijq01/WKnGA3MAGD9Ynupe64fxxwZ//g=="
+  "resolved" "https://registry.npmjs.org/vue2-smooth-scroll/-/vue2-smooth-scroll-1.6.0.tgz"
+  "version" "1.6.0"
 
 "vuex@^3.6.2":
   "integrity" "sha512-ETW44IqCgBpVomy520DT5jf8n0zoCac+sxWnn+hMe/CzaSejb/eVw2YToiXYX+Ex/AuHHia28vWTq4goAexFbw=="

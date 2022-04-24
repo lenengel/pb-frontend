@@ -8,6 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
+        handwritten: ["'Shadows Into Light'", "cursive"],
         sans: ["'Questrial'", "sans-serif"],
         serif: ["'Old Standard TT'", "serif"],
       }

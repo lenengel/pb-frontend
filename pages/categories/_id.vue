@@ -6,8 +6,6 @@
 import Products from "~/components/Products.vue"
 import axios from 'axios';
 
-
-
 export default {
   data() {
     return {

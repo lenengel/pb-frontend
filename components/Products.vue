@@ -24,7 +24,6 @@ export default {
 props: {
     products: Array,
     error: Object,
-    storeUrl: String
   }
 }
 </script>
