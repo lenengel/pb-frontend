@@ -1,9 +1,13 @@
-<template>
-  <Products :products="this.products" :error="error" />
+<template lang="pug">
+  div
+    Categories(:categorySelected='true')
+    .productsle
+      Products(:products='this.products' :error='error')
 </template>
 
 <script>
 import Products from "~/components/Products.vue"
+import Categories from "~/components/Categories.vue"
 import axios from 'axios';
 
 export default {
@@ -25,7 +29,8 @@ export default {
     }
   },
   components: {
-    Products
+    Products,
+    Categories,
   }
 }
 </script>

@@ -6,7 +6,7 @@
                 h1.header.font-serif.text-5xl
                     span.pl-10.pr-10 {{title}}
             span.subtitle.font-handwritten.text-2xl.text-amber-200 {{subtitle}}
-            p.pt-10.text-lg.font-light {{text}}
+            p.pt-10.text-xl.font-light {{text}}
 </template>
 
 <script>
