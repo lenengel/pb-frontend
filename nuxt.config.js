@@ -47,7 +47,9 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [],
+   plugins: [
+     { src: '~/plugins/persistedState.client.js' }
+    ],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -62,8 +64,14 @@ export default {
   ],
   /*
    ** Nuxt.js modules
-   */
-  modules: ['@nuxtjs/strapi', '@nuxtjs/axios'],
+   */   
+  modules: ['@nuxtjs/strapi', '@nuxtjs/axios', 'vue-toastification/nuxt'],
+  toast: {
+    // Vue Toastification plugin options
+    timeout: 2000,
+    closeOnClick: false,
+    position: "top-center"
+  },
   strapi: {
     url: process.env.API_URL || "http://localhost:1337/api",
     entities: [
@@ -79,6 +87,4 @@ export default {
    ** See https://nuxtjs.org/api/configuration-build/
    */
   build: {},
-
-
 }

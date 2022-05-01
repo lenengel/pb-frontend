@@ -8,7 +8,7 @@
           p.font-thin.tracking-widest.mb-6.text-2xl.text-focus-in-2 
             | Da RIND mir das Wasser im Mund zusammen...
           a.text-focus-in-3.inline-block.px-7.py-3.mb-1.pl-3.pr-3.bg-white.text-black.font-semibold.leading-snug.uppercase.rounded.transition.duration-150.ease-in-out(class='hover:bg-opacity-5 focus:outline-none focus:ring-0' href='/shop' role='button' data-mdb-ripple='true' data-mdb-ripple-color='light') 
-            | zum SHOP
+            | PEMBEEF vorbestellen
 </template>
 
 <script>

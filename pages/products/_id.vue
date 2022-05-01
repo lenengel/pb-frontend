@@ -3,12 +3,12 @@ div
   div(v-if='this.product !== null')
     .m-6.grid.grid-cols-1.gap-4.mt-8(class='sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2')
       .rounded-t-lg.pt-2.pb-2
-        img.m-auto(:src='image')
+        img.m-auto(:src='product.image')
       .w-full.p-5.flex.flex-col.justify-between
         div
-          h4.mt-1.font-semibold.text-lg.leading-tight.truncate.text-gray-700 {{product.attributes.title}} - {{ price }}
-          .mt-1.text-gray-600 {{ product.attributes.description }}
-        button.mt-4.bg-white.border.border-gray-200.d.text-gray-700.font-semibold.py-2.px-4.rounded.shadow(class='hover:shadow-lg' :data-item-id='product.attributes.id' :data-item-price='product.attributes.price')
+          h4.mt-1.font-semibold.text-lg.leading-tight.truncate.text-gray-700 {{product.title}} - {{ product.price }}
+          .mt-1.text-gray-600 {{ product.description }}
+        button.mt-4.bg-white.border.border-gray-200.d.text-gray-700.font-semibold.py-2.px-4.rounded.shadow(class='hover:shadow-lg' :data-item-id='product.id' :data-item-price='product.price')
           | In den Einkaufswagen
         //
           Ausverkauft --
@@ -44,24 +44,9 @@ export default {
       const res = await axios.get('http://localhost:1337/api/products/'+this.$route.params.id+'?populate=%2A');
       const product = res.data;
     
-      this.product = product.data;    
+      this.product = product.data;
     } catch (error) {
       this.error = error
-    }
-  },
-  computed: {
-    price() {      
-      return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(this.product.attributes.price);
-    },
-    customFields() {
-      return {};
-      
-    },
-    image() {
-      if(!this.product.attributes.image.data)
-        return "~/assets/img/placeholder-image.png";
-      
-      return "http://localhost:1337" + this.product.attributes.image.data.attributes.formats.small.url;
     }
   },
   methods: {

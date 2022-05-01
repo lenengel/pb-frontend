@@ -1,0 +1,74 @@
+<template lang="pug">
+div
+  div(v-if="isLoading")
+    //PLACEHOLDER
+    Products(isLoading=true)
+  div(v-else-if='selectedProduct')
+    ProductDetails(:product='selectedProduct', @back="showProducts")
+  div(v-else)
+    Categories(@selectCategory="filterProducts")
+    Products(v-bind:products='filteredProducts' :error='error' :storeurl='storeUrl', @productSelected="showProductDetails")
+  
+</template>
+
+<script>
+import Products from "../components/Products.vue"
+import Categories from "../components/Categories.vue"
+import ProductDetails from "../components/ProductDetails.vue"
+import Cart from "../components/Cart.vue"
+
+export default {
+  data() {
+    return {
+      selectedProduct: null,
+      filteredProducts: [],
+      storeUrl: process.env.storeUrl,
+      error: null,
+      isLoading: true,
+      showCart: false,
+    }
+  },
+  methods: {
+    cartClicked : function () {
+      this.showCart = true;
+    },
+		filterProducts: function(category) {
+      var vm = this;
+      if(category == "") {
+				vm.filteredProducts = vm.$store.getters.getProducts;
+			} 
+      else {
+        vm.filteredProducts=[];
+        vm.$store.getters.getProducts.forEach(function(product) {
+          if(product.categories.data.map(object => object.id).indexOf(category)>-1)
+            vm.filteredProducts.push(product);
+        });
+			}
+		},
+    showProductDetails: function(productId) {
+      this.selectedProduct = this.$store.getters.getProducts.filter(product => product.id == productId)[0];
+    },
+    showProducts: function() {
+      this.selectedProduct = null;
+      this.showCart = false;
+    }
+	},
+  async mounted() {
+    try {
+      this.isLoading = true;
+      const products = (await this.$strapi.$products.find({ populate: '*'})).data
+      this.$store.dispatch("initializeProducts", products);
+      this.filteredProducts = this.$store.getters.getProducts;
+      this.isLoading = false;
+    } catch (error) {
+      this.error = error
+    }
+  },
+  components: {
+    Products,
+    Categories,
+    ProductDetails,
+    Cart,
+  }
+}
+</script>
