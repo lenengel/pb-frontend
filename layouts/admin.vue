@@ -1,7 +1,7 @@
 <template lang="pug">
 div
   ToolBarAdmin
-  nuxt.mx-10.my-20
+  nuxt.px-10.mt-20
 </template>
 
 <script>

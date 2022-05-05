@@ -77,6 +77,12 @@ export default {
         },
       },
     },
+    redirect: {
+      login: '/user/login',
+      logout: '/',
+      callback: '/user/login',
+      home: '/'
+    },
   },
   strapi: {
     url: (process.env.NODE_ENV == 'production') ? 'https://strapi-4n8f.onrender.com/api' : 'http://localhost:1337/api',

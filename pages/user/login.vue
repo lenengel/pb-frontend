@@ -6,10 +6,10 @@
         | {{ err }}
       .mb-6
         label.block.mb-2.text-base.font-medium.text-gray-900(for='email' class='dark:text-gray-300') Email
-        input.p-3.shadow-sm.bg-gray-50.border.border-gray-300.text-gray-900.text-base.rounded-lg.block.w-full(v-model='email' type='email' class='focus:ring-gray-500 focus:border-gray-500 p-2.5 ' placeholder='name@strapi.io' required='')
+        input.p-3.shadow-sm.bg-gray-50.border.border-gray-300.text-gray-900.text-base.rounded-lg.block.w-full(v-model='email' type='email' class='focus:ring-gray-500 focus:border-gray-500 p-2.5 ' placeholder='Email' required='' autocomplete="username")
       .mb-6
         label.block.mb-2.text-base.font-medium.text-gray-900(for='password' class='dark:text-gray-300') Passwort
-        input.p-3.shadow-sm.bg-gray-50.border.border-gray-300.text-gray-900.text-base.rounded-lg.block.w-full(v-model='password' type='password' class='focus:ring-gray-500 focus:border-gray-500 p-2.5 ' required='')
+        input.p-3.shadow-sm.bg-gray-50.border.border-gray-300.text-gray-900.text-base.rounded-lg.block.w-full(v-model='password' type='password' class='focus:ring-gray-500 focus:border-gray-500 p-2.5 ' required='' autocomplete="current-password")
         p.mt-2.text-base.text-gray-500(class='dark:text-gray-400')
           nuxt-link.font-medium.text-black(class='hover:underline' to='/user/forgot') Passwort zurücksetzen
           | ?
