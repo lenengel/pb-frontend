@@ -1,5 +1,5 @@
 <template lang="pug">
-div
+div.p-5
   div(v-if='this.product !== null')
     .m-6.grid.grid-cols-1.gap-4.mt-8(class='sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2')
       .rounded-t-lg.pt-2.pb-2
@@ -41,7 +41,7 @@ export default {
     try {     
       //this.product = (await this.$strapi.$products.findOne(this.$route.params.id)).data
 
-      const res = await axios.get('http://localhost:1337/api/products/'+this.$route.params.id+'?populate=%2A');
+      const res = await axios.get(process.env.storeUrl + '/api/products/'+this.$route.params.id+'?populate=%2A');
       const product = res.data;
     
       this.product = product.data;

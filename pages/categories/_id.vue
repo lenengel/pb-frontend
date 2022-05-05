@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div.p-5
     Categories(:categorySelected='true')
     .productsle
       Products(:products='this.products' :error='error')
@@ -19,7 +19,7 @@ export default {
   },
   async mounted() {
     try {
-    const res = await axios.get('http://localhost:1337/api/categories/'+this.$route.params.id+'?populate[products][populate]=%2A');
+    const res = await axios.get(process.env.storeUrl +'/api/categories/'+this.$route.params.id+'?populate[products][populate]=%2A');
     const category = res.data;
     
     this.products = category.data.attributes.products.data;

@@ -3,7 +3,7 @@ div
   ToolBar
   NavBar
   .flex.justify-center.bg-white
-    .max-w-screen-lg.flex.flex-col.w-full
+    .flex.flex-col.w-full(class="lg:max-w-screen-lg")
       nuxt
   Footer
 </template>

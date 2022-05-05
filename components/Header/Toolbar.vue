@@ -1,22 +1,27 @@
 <template lang="pug">
-  .top-0.sticky.bg-black.z-50
-      .max-w-screen-lg.mx-auto.flex.flex-wrap
-        .flex-1
-          .flex.justify-left.space-x-2.p-1
-            a(href="https://www.facebook.com/pembeef/" target="_blank")
-              Facebook
-            a(href="https://www.instagram.com/pembeef/" target="_blank")
-              Instagram
-            a(href="https://www.youtube.com/channel/UC4Bdm4_-awymcXiXZRw5X5w" target="_blank")
-              Youtube
-            a(href="https://wa.me/4369981758949" target="_blank")
-              WhatsApp
-            a(href="https://www.google.com/maps/place/PEMBEEF/@47.6964719,13.3457582,7z/data=!4m5!3m4!1s0x0:0xb870827d3b4fb77c!8m2!3d47.6964719!4d13.3457582" target="_blank")
-              GoogleMaps
-        .flex.pr-5.p-1
+nav.bg-black.px-2.mt-0.fixed.w-full.z-10.top-0.h-10
+  .container.mx-auto.flex.flex-wrap.items-center(class="lg:max-w-screen-lg")
+    .flex.pt-2.content-center.justify-start(class='w-1/3')
+      ul.list-reset.flex.flex-1.items-center(class='md:flex-none')
+        li.mr-1
+          a(href="https://www.facebook.com/pembeef/" target="_blank")
+            Facebook
+        li.mr-2
+          a(href="https://www.instagram.com/pembeef/" target="_blank")
+            Instagram
+        li.mr-2
+          a(href="https://www.youtube.com/channel/UC4Bdm4_-awymcXiXZRw5X5w" target="_blank")
+            Youtube
+        li.mr-2
+          a(href="https://wa.me/4369981758949" target="_blank")
+            WhatsApp
+        li.mr-1
+          a(href="https://www.google.com/maps/place/PEMBEEF/@47.6964719,13.3457582,7z/data=!4m5!3m4!1s0x0:0xb870827d3b4fb77c!8m2!3d47.6964719!4d13.3457582" target="_blank")
+            GoogleMaps
+    .flex.pt-2.content-center.justify-end(class='w-2/3')
+      .flex.justify-end
           a(href='/liste')
             cart
-        
 </template>
 
 <script>

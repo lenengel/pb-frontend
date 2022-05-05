@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    .container.flex.flex-wrap.mx-auto.ml-4.mr-6.mt-8
+    .ml-4.mr-6.mt-4.overflow-auto.flex
       div(v-if="isLoading")
         .flex.items-center.justify-center
           .inline-flex.items-center.bg-gray-100.text-gray-800.font-semibold.py-2.px-4.ml-2.border.border-gray-400.rounded-full.shadow
@@ -17,9 +17,9 @@
               path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 18L18 6M6 6l12 12')
       //div(v-else)
       div(v-if="!isLoading")
-        .bg-gray-100.cursor-pointer.font-semibold.py-2.px-4.ml-2.mb-2.border.border-gray-400.rounded-full.shadow(@click="categoryClicked('')" v-bind:class="[active === '' ? 'bg-gray-900 text-gray-200' : '']" class="hover:bg-gray-300 hover:text-gray-800")
+        .flex-none.cursor-pointer.font-medium.py-2.px-4.ml-2.mb-2.border.border-black.rounded-full.shadow(@click="categoryClicked('')" v-bind:class="[active === '' ? 'bg-gray-100 text-black' : 'bg-black text-gray-100']" class="hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black")
           | ALLE
-      .bg-gray-100.cursor-pointer.font-semibold.py-2.px-4.ml-2.mb-2.border.border-gray-400.rounded-full.shadow(v-for='category in categories' :key='category.id' @click="categoryClicked(category.id)" v-bind:class="[active === category.id ? 'bg-gray-900 text-gray-200' : '']" class="hover:bg-gray-300 hover:text-gray-800")
+      .flex-none.cursor-pointer.font-medium.py-2.px-4.ml-2.mb-2.border.border-black.rounded-full.shadow(v-for='category in categories' :key='category.id' @click="categoryClicked(category.id)" v-bind:class="[active === category.id ? 'bg-gray-100 text-black' : 'bg-black text-gray-100']" class="hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black")
         | {{ category.attributes.name }}
     div(v-if='error')
       Warning(:text=error)

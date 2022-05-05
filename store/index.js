@@ -2,15 +2,24 @@
 export const state = () => ({
   products: [],
   cart: [],
-})
+  toast: { title: "",
+          text: "",
+        items: []},
+ })
 
 // contains your actions
 export const actions = {
   addToCart: (context, product) => {
     context.commit('ADD_TO_CART', product);
   },
+  setToast: (context, toast) => {
+    context.commit('SET_TOAST', toast);
+  },
   removeFromCart: (context, index) => {
     context.commit('REMOVE_FROM_CART', index);
+  },
+  clearCart: (context) => {
+    context.commit('CLEAR_CART');
   },
   initializeProducts: (context, products) => {
     context.commit('INITIALIZE_PRODUCTS', products)
@@ -24,8 +33,14 @@ export const mutations = {
   ADD_TO_CART: (state, product) => {
     state.cart.push(product);
   },
+  SET_TOAST: (state, toast) => {
+    state.toast = toast;
+  },
   REMOVE_FROM_CART: (state, index) => {
     state.cart.splice(index, 1);
+  },
+  CLEAR_CART : (state) => {
+    state.cart = [];
   },
   INITIALIZE_PRODUCTS: (state, products) => {
     state.products = [];
@@ -35,7 +50,7 @@ export const mutations = {
         price : (new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(product.attributes.price)),
         priceRaw : product.attributes.price,
         title : product.attributes.title,
-        image : (product.attributes.image.data ? "http://localhost:1337" + product.attributes.image.data.attributes.formats.small.url : "~/assets/img/placeholder-image.png" ),
+        image : (product.attributes.image.data ? process.env.storeUrl + product.attributes.image.data.attributes.formats.small.url : "~/assets/img/placeholder-image.png" ),
         description: product.attributes.description,
         categories: product.attributes.categories,
       });
@@ -49,4 +64,7 @@ export const mutations = {
 export const getters = {
     getCart: state => state.cart,
     getProducts: state => state.products,
+    getToast: state => state.toast,
+    isAuthenticated: state => state.auth.loggedIn,
+    loggedInUser: state => state.auth.user,
 }

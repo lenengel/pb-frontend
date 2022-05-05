@@ -8,7 +8,7 @@
           //p
             | Ich m&ouml;chte den n&auml;chsten Liefertermin per Mail erhalten.           
             .pt-4(class='md:mb-6')
-              input#exampleFormControlInput1.form-control.block.w-full.px-3.text-base.font-normal.text-gray-700.bg-white.bg-clip-padding.border.border-solid.border-gray-300.rounded.transition.ease-in-out.m-0(type='text' class='py-1.5 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none' placeholder='Email Adresse')
+              input#exampleFormControlInput1.form-control.block.w-full.px-3.text-base.font-normal.text-gray-700.bg-white.bg-clip-padding.border.border-solid.border-gray-300.rounded.transition.ease-in-out.m-0(type='text' class='py-1.5 focus:text-gray-700 focus:bg-white focus:border-gray-600 focus:outline-none' placeholder='Email Adresse')
             .(class='md:mb-6')
               button.inline-block.px-6.py-2.border-2.bg-gray-200.font-medium.text-xs.leading-tight.uppercase.rounded.transition.duration-150.ease-in-out(type='submit' class='hover:bg-gray-500 hover:text-white focus:outline-none focus:ring-0')
                 | Subscribe

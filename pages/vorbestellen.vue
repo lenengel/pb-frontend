@@ -1,5 +1,5 @@
 <template lang="pug">
-div
+div.p-5
   div(v-if="isLoading")
     //PLACEHOLDER
     Products(isLoading=true)
@@ -8,7 +8,6 @@ div
   div(v-else)
     Categories(@selectCategory="filterProducts")
     Products(v-bind:products='filteredProducts' :error='error' :storeurl='storeUrl', @productSelected="showProductDetails")
-  
 </template>
 
 <script>
@@ -18,6 +17,7 @@ import ProductDetails from "../components/ProductDetails.vue"
 import Cart from "../components/Cart.vue"
 
 export default {
+  transition: 'fade',
   data() {
     return {
       selectedProduct: null,

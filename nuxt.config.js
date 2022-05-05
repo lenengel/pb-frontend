@@ -1,10 +1,5 @@
 export default {
-  /*
-   ** Nuxt target
-   ** See https://nuxtjs.org/api/configuration-target
-   */
   target: 'static',
-
   head: {
     title: "PEMBEEF | BioBauernhof Pemperreith",
     meta: [{
@@ -33,58 +28,65 @@ export default {
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap",
-      },
-      
+      }, 
     ],
-    script: [{      
-    }]
   },
-  /*
-   ** Global CSS
-   */
   css: [],
-  /*
-   ** Plugins to load before mounting the App
-   ** https://nuxtjs.org/guide/plugins
-   */
-   plugins: [
-     { src: '~/plugins/persistedState.client.js' }
-    ],
-  /*
-   ** Auto import components
-   ** See https://nuxtjs.org/api/configuration-components
-   */
+  plugins: [
+     { src: '~/plugins/persistedState.client.js' },
+     { src: '~/plugins/axios.js'},
+  ],
   components: true,
-  /*
-   ** Nuxt.js dev-modules
-   */
   buildModules: [
-    // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
     '@nuxtjs/tailwindcss',
   ],
-  /*
-   ** Nuxt.js modules
-   */   
-  modules: ['@nuxtjs/strapi', '@nuxtjs/axios', 'vue-toastification/nuxt'],
+  modules: [
+    '@nuxtjs/strapi', 
+    '@nuxtjs/auth-next',
+    '@nuxtjs/axios', 
+    'vue-toastification/nuxt'
+  ],
   toast: {
-    // Vue Toastification plugin options
     timeout: 2000,
     closeOnClick: false,
-    position: "top-center"
+    position: "top-center",
+    hideProgressBar: true,
+  },
+  axios: {
+    baseURL: (process.env.NODE_ENV == 'production') ? 'https://strapi-4n8f.onrender.com/api' : 'http://localhost:1337/api',
+  },
+  auth: {
+    strategies: {
+      local: {
+        token: {
+          property: 'jwt',
+        },
+        user: {
+          property: false,
+        },
+        endpoints: {
+          login: {
+            url: 'auth/local',
+            method: 'post',
+          },
+          user: {
+            url: 'users/me',
+            method: 'get',
+          },
+          logout: false,
+        },
+      },
+    },
   },
   strapi: {
-    url: process.env.API_URL || "http://localhost:1337/api",
+    url: (process.env.NODE_ENV == 'production') ? 'https://strapi-4n8f.onrender.com/api' : 'http://localhost:1337/api',
     entities: [
       'products',
       'categories'
     ],
   },
   env: {
-    storeUrl: process.env.STORE_URL || "http://localhost:1337"
+    storeUrl: (process.env.NODE_ENV == 'production') ? 'https://strapi-4n8f.onrender.com' : 'http://localhost:1337',
   },
-  /*
-   ** Build configuration
-   ** See https://nuxtjs.org/api/configuration-build/
-   */
   build: {},
 }
