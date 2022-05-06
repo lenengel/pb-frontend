@@ -1,15 +1,11 @@
 <template lang="pug">
-.max-w-md.w-full.mx-auto.mt-8
-  h1.text-3xl.font-extrabold.mb-4 Your profile
-  form(@submit.prevent='userLogin')
-    .mb-6
-      label.block.mb-2.text-sm.font-medium.text-gray-900(for='email' class='dark:text-gray-300') Your email
-      input.mb-6.bg-gray-100.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full.cursor-not-allowed(type='email' class='focus:ring-gray-500 focus:border-gray-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-500 dark:text-gray-500 dark:focus:ring-gray-500 dark:focus:border-gray-500' :value='loggedInUser.email' disabled='')
-    .mb-6
-      label.block.mb-2.text-sm.font-medium.text-gray-900(for='username' class='dark:text-gray-300') Your username
-      input.mb-6.bg-gray-100.border.border-gray-300.text-gray-900.text-sm.rounded-lg.block.w-full.cursor-not-allowed(type='text' class='focus:ring-gray-500 focus:border-gray-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-500 dark:text-gray-500 dark:focus:ring-gray-500 dark:focus:border-gray-500' :value='loggedInUser.username' disabled='')
+div
+    Orders
+  
 </template>
 <script>
+import Orders from "./../components/admin/Orders.vue"
+
 import { mapGetters } from 'vuex'
 export default {
     layout: 'admin',
@@ -17,5 +13,8 @@ export default {
     computed: {
     ...mapGetters(['loggedInUser']),
     },
+    components: {
+      Orders,
+    }
 }
 </script>

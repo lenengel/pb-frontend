@@ -5,8 +5,7 @@ div
       .flow-root
         .py-6(v-show='cartCount == 0')
           span.text-xs.text-gray-700.font-light.px-6.py-2.whitespace-nowrap.text-center
-            | (Keine Einträge)
-          
+            | (Keine Einträge)          
         ul.-my-6.divide-y.divide-gray-200(role='list')
           li.flex.py-6(v-for='(product, index) in cart' :key='index')
             .h-24.w-24.flex-shrink-0.overflow-hidden.rounded-md.border.border-gray-200
@@ -236,7 +235,7 @@ export default {
         vm.isSending = false;
         vm.$toast.success(`Die Vorbestellung wurde erfolgreich übermittelt.`,{timeout: 5000});
         vm.$store.dispatch('clearCart');
-        vm.$router.push('danke');
+        vm.$router.push('/danke');
 
       })
       .catch(function (error) {
