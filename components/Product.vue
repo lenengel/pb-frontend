@@ -13,16 +13,19 @@
         img.h-56.w-full.object-cover.cursor-pointer(:src='product.image' alt='', @click="productClicked(product.id)")
         .p-5
           h1.text-2xl.font-bold.cursor-pointer( @click="productClicked(product.id)") {{product.title}}
-          p.mt-2.text-lg.font-semibold.text-gray-600 {{product.price}}
+          p.mt-2.text-lg.font-semibold.text-gray-600 {{price}}
 
           
-          .flex.flex-row.w-full.place-content-end
+          .flex.pt-2.flex-row.w-full.place-content-end
               div.text-xs.mr-2.mt-2
-                | Zur Liste hinzufügen
+                | 
               select.form-select.form-select-lg.mr-2.block.px-2.py-1.text-gray-700.bg-white.border-2.border-solid.border-gray-800.rounded.h-9(v-model="quantity" aria-label='Anzahl auswählen')
                 option(value=1) 1
                 option(value=2) 2
                 option(value=3) 3
+              select.form-select.form-select-lg.mr-2.block.px-2.py-1.text-gray-700.bg-white.border-2.border-solid.border-gray-800.rounded.h-9(v-model="unit" aria-label='Variante auswählen')
+                option.p-5(v-for='(unit, index) in product.units' :key="index" :value="index") {{unit.name}}
+
               button.rounded.font-bold.text-3xl.leading-none.flex.justify-center.items-center.border-2.border-gray-800.px-3.h-9(@click="addToChart(product)" type='button' class='hover:bg-gray-200') +
            
               
@@ -36,7 +39,9 @@
 export default {
   data() {
     return {
-      quantity: 1
+      quantity: 1,
+      unit: 0,
+      price: 0,
     }
   },
   props: {
@@ -49,9 +54,19 @@ export default {
     },
     addToChart: function (product) {
       product["quantity"] = this.quantity;
-      this.$store.dispatch('addToCart', product)
+      product["unit"] = this.product.units[this.unit].value;
+      this.$store.dispatch('addToCart', {...product})
       this.$toast.success(`${product.title} wurde zu deinen Vorbestellungen hinzugefügt.`);
     },
+  },
+  created() {
+    if(this.product)
+      this.price = this.formatPrice(this.product.units[this.unit].value * this.product.priceRaw);
+  },
+  watch : {
+    'unit'(value) {
+      this.price = this.formatPrice(this.product.units[value].value * this.product.priceRaw);
+    }
   }
 }
 </script>

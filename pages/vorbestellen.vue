@@ -59,6 +59,7 @@ export default {
       const products = (await this.$strapi.$products.find({ populate: '*'})).data
       this.$store.dispatch("initializeProducts", products);
       this.filteredProducts = this.$store.getters.getProducts;
+      console.log(this.filteredProducts);
       this.isLoading = false;
     } catch (error) {
       this.error = error

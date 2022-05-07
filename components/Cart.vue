@@ -15,13 +15,16 @@ div
                 .flex.justify-between.text-base.font-medium.text-gray-900
                   .h3.text-xl
                     a(:href='product.href')  {{ product.title }} 
-                  p.ml-4 {{priceLineTotal(product.priceRaw, product.quantity)}}
-                p.mt-1.text-sm.text-gray-500 {{ product.price }}
+                  p.ml-4 {{priceLineTotal(product.priceRaw, product.quantity, product.unit)}}
+                p.mt-1.text-sm.text-gray-500 {{priceLine(product.priceRaw, product.unit)}}
               .flex.flex-1.items-end.justify-between.text-sm
-                select.form-select.form-select-lg.block.px-2.py-1.text-gray-700.bg-white.border-2.border-solid.border-gray-800.rounded.h-9(:value="product.quantity" @change="onChangeQuantity($event,index)" aria-label='Anzahl auswählen')
-                      option(value=1) 1
-                      option(value=2) 2
-                      option(value=3) 3
+                div.flex
+                  select.form-select.form-select-lg.block.px-2.py-1.text-gray-700.bg-white.border-2.border-solid.border-gray-800.rounded.h-9(:value="product.quantity" @change="onChangeQuantity($event,index)" aria-label='Anzahl auswählen')
+                    option(value=1) 1
+                    option(value=2) 2
+                    option(value=3) 3
+                  select.ml-3.form-select.form-select-lg.mr-2.block.px-2.py-1.text-gray-700.bg-white.border-2.border-solid.border-gray-800.rounded.h-9(:value="product.unit" @change="onChangeUnit($event,index)" aria-label='Variante auswählen')
+                    option.p-5(v-for='(unit, index) in product.units' :key="index" :value="unit.value") {{unit.name}}
                 .flex
                   div.cursor-pointer(@click="removeCart(index)")
                       Trash
@@ -96,7 +99,7 @@ div
             tbody
               tr.bg-white.border-b.text-right(v-for='(product, index) in cart' :key="index")
                 td.text-sm.text-gray-900.font-light.px-6.py-2.whitespace-nowrap.text-left
-                  | {{product.title}}
+                  | {{product.title}}F
                 td.text-sm.text-gray-900.font-light.px-6.py-2.whitespace-nowrap.flex.place-content-end
                   //Counter(:quantity="product.quantity")
                   select.form-select.form-select-lg.block.px-2.py-1.text-gray-700.bg-white.border-2.border-solid.border-gray-800.rounded.h-9(:value="product.quantity" @change="onChangeQuantity($event,index)" aria-label='Anzahl auswählen')
@@ -156,13 +159,18 @@ export default {
     cart () {
       return this.$store.state.cart;
     },
+    priceLine() {
+      return (price, unit) => {
+        return this.formatPrice(price * unit);
+      }
+    },
     priceLineTotal() {
-      return (price, quantity) => {
-        return this.formatPrice(price * quantity);
+      return (price, quantity, unit) => {
+        return this.formatPrice(price * quantity * unit);
       }
     },
     priceTotal() {
-      return this.formatPrice(this.$store.getters.getCart.map( el => (el.priceRaw * el.quantity) )
+      return this.formatPrice(this.$store.getters.getCart.map( el => (el.priceRaw * el.quantity * el.unit) )
                         .reduce(
                           (previousValue, currentValue) => previousValue + currentValue,
                           0));
@@ -247,11 +255,11 @@ export default {
     removeCart : function (index) {
       this.$store.dispatch('removeFromCart', index)
     },
-    formatPrice: function (price) {
-      return (new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(price));
-    },
     onChangeQuantity: function (e, idx) {
       this.$store.dispatch('updateQuantity', {value: e.target.value, index : idx});
+    },
+    onChangeUnit: function (e, idx) {
+      this.$store.dispatch('updateUnit', {value: e.target.value, index : idx});
     },
   },
   components : {

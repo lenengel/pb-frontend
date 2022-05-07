@@ -35,6 +35,7 @@ export default {
   plugins: [
      { src: '~/plugins/persistedState.client.js' },
      { src: '~/plugins/axios.js'},
+     { src: '~/plugins/common.js'},
   ],
   components: true,
   buildModules: [

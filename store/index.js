@@ -2,18 +2,12 @@
 export const state = () => ({
   products: [],
   cart: [],
-  toast: { title: "",
-          text: "",
-        items: []},
  })
 
 // contains your actions
 export const actions = {
   addToCart: (context, product) => {
     context.commit('ADD_TO_CART', product);
-  },
-  setToast: (context, toast) => {
-    context.commit('SET_TOAST', toast);
   },
   removeFromCart: (context, index) => {
     context.commit('REMOVE_FROM_CART', index);
@@ -26,6 +20,9 @@ export const actions = {
   },
   updateQuantity: (context, obj) => {
     context.commit('UPDATE_QUANTITY', obj);
+  },
+  updateUnit: (context, obj) => {
+    context.commit('UPDATE_UNIT', obj);
   },
 }
 // contains your mutations
@@ -53,11 +50,15 @@ export const mutations = {
         image : (product.attributes.image.data ? process.env.storeUrl + product.attributes.image.data.attributes.formats.small.url : "~/assets/img/placeholder-image.png" ),
         description: product.attributes.description,
         categories: product.attributes.categories,
+        units: product.attributes.product_units.data.map(unit => { return {name : unit.attributes.name, value: unit.attributes.weight}}),
       });
     });
   },
   UPDATE_QUANTITY: (state, obj) => {
     state.cart[obj.index]["quantity"] = obj.value;
+  },
+  UPDATE_UNIT: (state, obj) => {
+    state.cart[obj.index]["unit"] = obj.value;
   },
 }
 // your root getters

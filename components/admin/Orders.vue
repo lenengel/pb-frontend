@@ -1,51 +1,47 @@
 <template lang="pug">
-  .flex.flex-col
-    .overflow-x-auto(class='sm:-mx-6 lg:-mx-8')
-      .py-4.inline-block.min-w-full(class='sm:px-6 lg:px-8')
-        .overflow-hidden
-          table.min-w-full.text-right
-            thead.border-b.bg-black
-              tr
-                th.font-medium.text-white.px-6.py-2.text-left(scope='col')
-                  | #
-                th.font-medium.text-white.px-6.py-2(scope='col')
-                  | Name
-                th.font-medium.text-white.px-6.py-2(scope='col') 
-                  | Bestell Datum
-                th.font-medium.text-white.px-6.py-2(scope='col')
-                  | Produkte
-                th.font-medium.text-white.px-6.py-2(scope='col')
-                  | Summe
-                th.font-medium.text-white.px-6.py-2(scope='col')
-                  |  
-            tbody
-              tr.bg-white.border-b.text-right(v-for='(order, index) in orders' :key="index")
-                td.text-sm.text-gray-900.font-light.px-6.py-2.whitespace-nowrap.text-left
-                  | {{order.id}}
-                td.text-sm.text-gray-900.font-light.px-6.py-2.whitespace-nowrap.flex.place-content-end
-                  | {{order.firstname}} {{order.lastname}}
-                td.text-sm.text-gray-900.font-light.px-6.py-2.whitespace-nowrap
-                  | {{order.publishedAt}}
-                td.text-sm.text-gray-900.font-light.px-6.py-2.whitespace-nowrap
-                  | {{products(order.ordered_products)}} 
-                td.text-sm.text-gray-900.font-light.px-6.py-2.whitespace-nowrap
-                  | {{priceLineTotal(order.ordered_products)}}
-                td.text-sm.text-gray-900.font-light.px-6.py-2.flex.justify-end
-                  div.cursor-pointer(@click="removeOrder(order.id, index)")
-                    Trash
-            tbody  
-              tr.bg-white.border-b(v-show='productsCount == 0')
-                td(colspan=5).text-xs.text-gray-700.font-light.px-6.py-2.whitespace-nowrap.text-center
-                  | (Keine Einträge)
-            //tbody  
-              tr.border-t.bg-black
-                th.text-white.px-6.py-2(colspan=3 scope='col')
-                  span.font-light.text-xs.pr-5 Richtpreis. Jedes Stück wird vom Fleischermeister per Hand geschnitten und kann somit im Gewicht variieren.
-                  span.font-medium.text-lg GESAMT
-                th.font-medium.text-lg.text-white.px-6.py-2(scope='col')
-                  | {{priceTotal}}
-                th.font-medium.text-white.px-6.py-2(scope='col')
-                  |
+    .container.mx-auto.px-4(class='sm:px-8')
+      .py-8
+        div
+          h2.text-2xl.font-semibold.leading-tight Bestellungen
+        .-mx-4.px-4.py-4.overflow-x-auto(class='sm:-mx-8 sm:px-8')
+          .inline-block.min-w-full.shadow-md.rounded-lg.overflow-hidden
+            table.min-w-full.leading-normal
+              thead
+                tr
+                  th.w-3.px-5.py-3.border-b-2.border-gray-200.bg-gray-100.text-left.text-xs.font-semibold.text-gray-700.uppercase.tracking-wider
+                    | #
+                  th.w-5.px-5.py-3.border-b-2.border-gray-200.bg-gray-100.text-left.text-xs.font-semibold.text-gray-700.uppercase.tracking-wider
+                    | Datum
+                  th.px-5.py-3.border-b-2.border-gray-200.bg-gray-100.text-left.text-xs.font-semibold.text-gray-700.uppercase.tracking-wider
+                    | Kunde
+                  th.px-5.py-3.border-b-2.border-gray-200.bg-gray-100.text-left.text-xs.font-semibold.text-gray-700.uppercase.tracking-wider
+                    | Bestellung
+                  th.px-5.py-3.border-b-2.border-gray-200.bg-gray-100.text-left.text-xs.font-semibold.text-gray-700.uppercase.tracking-wider
+                    | Status
+                  th.px-5.py-3.border-b-2.border-gray-200.bg-gray-100
+              tbody
+                tr(v-for='(order, index) in orders' :key="index" class="hover:bg-gray-100")
+                  td.px-5.py-5.border-b.border-gray-200.text-sm
+                    p.text-gray-600.whitespace-no-wrap {{order.id}}
+                  td.px-5.py-5.border-b.border-gray-200.text-sm
+                    p.text-gray-900.whitespace-no-wrap {{date(order.publishedAt)}}
+                    p.text-gray-600.whitespace-no-wrap {{time(order.publishedAt)}}
+                  td.px-5.py-5.border-b.border-gray-200.text-sm
+                    p.text-gray-900.font-semibold.whitespace-no-wrap
+                      | {{order.firstname}} {{order.lastname}}
+                    p.text-gray-600.whitespace-no-wrap {{order.street}}, {{order.phone}} 
+                  td.px-5.py-5.border-b.border-gray-200.text-sm
+                    NuxtLink.cursor-pointer(class='hover:underline' :to="{ path : '/orderedproducts/' + order.id}")
+                      p.text-gray-900.whitespace-no-wrap {{products(order.ordered_products)}}
+                      p.text-gray-600.whitespace-no-wrap {{priceLineTotal(order.ordered_products)}}
+                  td.px-5.py-5.border-b.border-gray-200.text-sm
+                    span.relative.inline-block.px-3.py-1.font-semibold.text-green-900.leading-tight
+                      span.absolute.inset-0.bg-green-200.opacity-50.rounded-full(aria-hidden='')
+                      span.relative NEU
+                  td.px-5.py-5.border-b.border-gray-200.text-sm.text-right
+                    div.cursor-pointer(@click="removeOrder(order.id, index)")
+                      Trash
+                
 </template>
 
 <script>
@@ -62,13 +58,24 @@ export default {
     productsCount () {
       return this.orders.length;
     },
+    date () {
+      return (value) => {
+       return new Date(value).toLocaleDateString('de-DE');
+      }
+    },
+    time () {
+      return (value) => {
+        return new Date(value).toLocaleTimeString('de-DE');
+      }
+    },
     products () {
       return (products) => {
-        let msg = "";
+        let msg = 0;
         for(const product of products) {
-          msg += `${product.quantity}x ${product.product.title} `;
+          msg += product.quantity;
         }
-        return msg;
+
+        return msg + "x 1kg";
       }  
     },
     priceLineTotal() {

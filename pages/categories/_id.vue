@@ -23,7 +23,6 @@ export default {
     const category = res.data;
     
     this.products = category.data.attributes.products.data;
-    console.log("###+++",this.products)  
     } catch (error) {
       this.error = error
     }
