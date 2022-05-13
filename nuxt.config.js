@@ -54,7 +54,7 @@ export default {
     hideProgressBar: true,
   },
   axios: {
-    baseURL: (process.env.NODE_ENV == 'production') ? 'https://strapi-4n8f.onrender.com/api' : 'http://localhost:1337/api',
+    baseURL: (process.env.NODE_ENV == 'production') ? 'https://pb-backend.onrender.com/api' : 'http://localhost:1337/api',
   },
   auth: {
     strategies: {
@@ -86,14 +86,14 @@ export default {
     },
   },
   strapi: {
-    url: (process.env.NODE_ENV == 'production') ? 'https://strapi-4n8f.onrender.com/api' : 'http://localhost:1337/api',
+    url: (process.env.NODE_ENV == 'production') ? 'https://pb-backend.onrender.com/api' : 'http://localhost:1337/api',
     entities: [
       'products',
       'categories'
     ],
   },
   env: {
-    storeUrl: (process.env.NODE_ENV == 'production') ? 'https://strapi-4n8f.onrender.com' : 'http://localhost:1337',
+    storeUrl: (process.env.NODE_ENV == 'production') ? 'https://pb-backend.onrender.com' : 'http://localhost:1337',
   },
   build: {},
 }

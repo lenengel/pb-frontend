@@ -2,6 +2,7 @@
 export const state = () => ({
   products: [],
   cart: [],
+  availableProducts: [],
  })
 
 // contains your actions
@@ -17,6 +18,9 @@ export const actions = {
   },
   initializeProducts: (context, products) => {
     context.commit('INITIALIZE_PRODUCTS', products)
+  },
+  updateAvailableProduct: (context, obj) => {
+    context.commit('UPDATE_AVAILABLE_PRODUCT', obj);
   },
   updateQuantity: (context, obj) => {
     context.commit('UPDATE_QUANTITY', obj);
@@ -41,18 +45,27 @@ export const mutations = {
   },
   INITIALIZE_PRODUCTS: (state, products) => {
     state.products = [];
-    products.forEach(function (product) {
+    for(const product of products) {
       state.products.push( {
-        id: product.id,
-        price : (new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(product.attributes.price)),
-        priceRaw : product.attributes.price,
-        title : product.attributes.title,
-        image : (product.attributes.image.data ? process.env.storeUrl + product.attributes.image.data.attributes.formats.small.url : "~/assets/img/placeholder-image.png" ),
-        description: product.attributes.description,
-        categories: product.attributes.categories,
-        units: product.attributes.product_units.data.map(unit => { return {name : unit.attributes.name, value: unit.attributes.weight}}),
+        id: product.product.id,
+        priceRaw : product.product.price,
+        title : product.product.title,
+        image : process.env.storeUrl + product.product.image.formats.small.url,
+        description: product.product.description,
+        categories: product.product.categories,
+        units: product.product.product_units.map(unit => { 
+          return {name : unit.name, value: unit.weight}
+        }),
+
+        // ToDo: Check Cart 
+        availableQuantity : product.quantity
       });
-    });
+    }
+  },
+  UPDATE_AVAILABLE_PRODUCT: (state, obj) => {
+    let product = state.products.find(product => product.id == obj.id);
+    product["availableQuantity"] = obj.value;
+    console.log("UPDATE_AVAILABLE_PRODUCT" , product)
   },
   UPDATE_QUANTITY: (state, obj) => {
     state.cart[obj.index]["quantity"] = obj.value;

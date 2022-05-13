@@ -107,9 +107,6 @@ export default {
         vm.$toast.error(`Fehler beim Löschen der Bestellung`);
       });
     },
-    formatPrice: function (price) {
-      return (new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(price));
-    },
   },
   async mounted() {
     try {

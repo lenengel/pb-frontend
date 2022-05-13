@@ -6,10 +6,18 @@ div.p-5
         img.m-auto(:src='product.image')
       .w-full.p-5.flex.flex-col.justify-between
         div
-          h4.mt-1.font-semibold.text-lg.leading-tight.truncate.text-gray-700 {{product.title}} - {{ product.price }}
+          h4.mt-1.font-semibold.text-lg.leading-tight.truncate.text-gray-700 {{product.title}} - {{ price }}
           .mt-1.text-gray-600 {{ product.description }}
-        button.mt-4.bg-white.border.border-gray-200.d.text-gray-700.font-semibold.py-2.px-4.rounded.shadow(class='hover:shadow-lg' :data-item-id='product.id' :data-item-price='product.price')
-          | In den Einkaufswagen
+        
+        select.form-select.form-select-lg.mr-2.block.px-2.py-1.text-gray-700.bg-white.border-2.border-solid.border-gray-800.rounded.h-9(v-model="quantity" aria-label='Anzahl auswählen')
+          option(value=1) 1
+          option(value=2) 2
+          option(value=3) 3
+        select.form-select.form-select-lg.mr-2.block.px-2.py-1.text-gray-700.bg-white.border-2.border-solid.border-gray-800.rounded.h-9(v-model="unit" aria-label='Variante auswählen')
+          option.p-5(v-for='(unit, index) in product.units' :key="index" :value="index") {{unit.name}}
+
+        button.mt-4.bg-white.border.border-gray-200.d.text-gray-700.font-semibold.py-2.px-4.rounded.shadow(class='hover:shadow-lg' @click="addToChart(product)")
+          | Zu den Vorbestellungen hinzufügen
         //
           Ausverkauft --
           <div class="text-center mr-10 mb-1" >
@@ -35,22 +43,35 @@ export default {
     return {
       product: null,
       error: null,
+      quantity: 1,
+      unit: 0,
+      price: 0,
     }
   },
   async mounted() {
     try {     
-      //this.product = (await this.$strapi.$products.findOne(this.$route.params.id)).data
-
       const res = await axios.get(process.env.storeUrl + '/api/products/'+this.$route.params.id+'?populate=%2A');
       const product = res.data;
-    
+
       this.product = product.data;
+      this.price = this.formatPrice(this.product.units[this.unit].value * this.product.priceRaw) 
     } catch (error) {
       this.error = error
     }
   },
   methods: {
-    getStrapiMedia
+    getStrapiMedia,
+    addToChart: function (product) {
+      product["quantity"] = this.quantity;
+      product["unit"] = this.product.units[this.unit].value;
+      this.$store.dispatch('addToCart', {...product})
+      this.$toast.success(`${product.title} wurde zu deinen Vorbestellungen hinzugefügt.`);
+    },
+  },
+  watch : {
+    'unit'(value) {
+      this.price = this.formatPrice(this.product.units[value].value * this.product.priceRaw);
+    }
   }
 }
 </script>

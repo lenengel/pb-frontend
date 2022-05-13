@@ -15,6 +15,7 @@ import Products from "../components/Products.vue"
 import Categories from "../components/Categories.vue"
 import ProductDetails from "../components/ProductDetails.vue"
 import Cart from "../components/Cart.vue"
+import axios from 'axios';
 
 export default {
   transition: 'fade',
@@ -40,7 +41,7 @@ export default {
       else {
         vm.filteredProducts=[];
         vm.$store.getters.getProducts.forEach(function(product) {
-          if(product.categories.data.map(object => object.id).indexOf(category)>-1)
+          if(product.categories.map(object => object.id).indexOf(category)>-1)
             vm.filteredProducts.push(product);
         });
 			}
@@ -55,11 +56,12 @@ export default {
 	},
   async mounted() {
     try {
+      console.log("MOUNTED")
       this.isLoading = true;
-      const products = (await this.$strapi.$products.find({ populate: '*'})).data
-      this.$store.dispatch("initializeProducts", products);
+      const products = (await axios.get(process.env.storeUrl + '/api/dates')).data;
+      
+      this.$store.dispatch("initializeProducts", products[0].available_products);
       this.filteredProducts = this.$store.getters.getProducts;
-      console.log(this.filteredProducts);
       this.isLoading = false;
     } catch (error) {
       this.error = error
