@@ -13,7 +13,10 @@ div
             .ml-4.flex.flex-1.flex-col
               div
                 .flex.justify-between.text-base.font-medium.text-gray-900
-                  p.text-xl {{product.quantity}}x {{ product.title }} {{unit(product)}} 
+                  div.flex.justify-start.text-gray-900
+                    p.text-xl.mt-1 {{product.quantity}}x 
+                    .text-2xl.font-bold.mx-4 {{ product.title }} 
+                    p.text-base.mt-2 {{unit(product)}} 
                   p.ml-4 {{priceLineTotal(product.priceRaw, product.quantity, product.unit)}}
                 p.mt-1.text-sm.text-gray-500 {{priceLine(product.priceRaw, product.unit)}}
               .flex.flex-1.items-end.justify-between.text-sm
@@ -53,14 +56,14 @@ div
             | Gesamt (inkl. MwSt.) 
           .flex.content-center.justify-end.font-bold.text-3xl(class='w-1/2')  
             | {{priceTotal}}
-        span.font-light.text-xs.pt-5 Richtpreis. Jedes Stück wird vom Fleischermeister per Hand geschnitten und kann somit im Gewicht variieren.
+        span.font-light.text-xs.pt-5 Der Gesamtbetrag ist ein Richtpreis. Jedes Stück wird vom Fleischermeister per Hand geschnitten und kann somit im Gewicht variieren.
         fieldset
           legend.sr-only Checkbox variants
           .flex.items-center.mb-4.pt-10
             input#checkbox-2.w-6.h-6.text-gray-600.bg-gray-100.border-gray-300.rounded(v-model='gdpr' type='checkbox' class='focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600')
             label.ml-2.text-sm.font-medium.text-gray-900(for='checkbox-2' class='dark:text-gray-300')
               | Ich habe die zur 
-              a.text-gray-600(href='#' class='hover:underline dark:text-gray-500') Datenschutzbestimmungen 
+              a.text-gray-600(href="/dsgvo" target="_blank" class="hover:underline dark:text-gray-500") Datenschutzbestimmungen 
               | Kenntnis genommen.
         .flex.justify-center
           button.px-5.mr-2.text-xl.text-white.bg-black.rounded-lg.border.border-black.inline-flex.items-center(type='button' @click='sendOrder()' class='hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black py-3') 

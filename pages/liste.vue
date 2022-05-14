@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-  InfoBlock(id="liste" ,title="Deine Vorbestellung" ,subtitle="Liefertermin 19. Mai 2022", text="Infotext zur Vorbestellung. Deine Vorbestellung wird im Liefergebiet zugestellt. Außerhalb des Liefergebietes ??? Der Gesamtpreis kann variieren. Es wird nach tatsächlichen Gewicht abgewogen. Jedes Stück wird per Hand vom Fleischermeister geschnitten.")
+  InfoBlock(id="liste" ,title="Deine Vorbestellung" ,subtitle="Liefertermin 19. Mai 2022", text="Jedes Stück wird per Hand vom Fleischermeister geschnitten und kann im Gewicht variieren, der Gesamtpreis ist ein Richtpreis und wird bei der Auslieferung nach dem tatsächlichen Gewicht berechnet.")
   Cart.px-5
   .pb-20
 </template>

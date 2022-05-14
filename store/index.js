@@ -50,6 +50,7 @@ export const mutations = {
         id: product.product.id,
         priceRaw : product.product.price,
         title : product.product.title,
+        subtitle : product.product.subtitle,
         image : process.env.storeUrl + product.product.image.formats.small.url,
         description: product.product.description,
         categories: product.product.categories,
@@ -65,7 +66,6 @@ export const mutations = {
   UPDATE_AVAILABLE_PRODUCT: (state, obj) => {
     let product = state.products.find(product => product.id == obj.id);
     product["availableQuantity"] = obj.value;
-    console.log("UPDATE_AVAILABLE_PRODUCT" , product)
   },
   UPDATE_QUANTITY: (state, obj) => {
     state.cart[obj.index]["quantity"] = obj.value;

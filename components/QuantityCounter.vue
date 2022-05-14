@@ -116,4 +116,7 @@ export default {
 
 
 <style>
+.w-18 {
+    width: 60px;
+}
 </style>

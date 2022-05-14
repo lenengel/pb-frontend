@@ -12,7 +12,8 @@
       .w-80.bg-white.rounded-xl.overflow-hidden.shadow-lg.duration-500.transform.transition(class='hover:shadow-xl hover:scale-105')
         img.h-56.w-full.object-cover.cursor-pointer(:src='product.image' alt='', @click="productClicked(product.id)")
         .p-5
-          h1.text-2xl.font-bold.cursor-pointer( @click="productClicked(product.id)") {{product.title}}
+          h1.text-2xl.font-bold.cursor-pointer( @click="productClicked(product.id)") {{product.title}}    
+          p.h-5.truncate.text-sm.text-gray-700 {{product.subtitle}}
           QuantityCounter(:product='product')
 </template>
 
