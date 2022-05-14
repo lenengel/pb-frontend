@@ -56,7 +56,7 @@ div
             | Gesamt (inkl. MwSt.) 
           .flex.content-center.justify-end.font-bold.text-3xl(class='w-1/2')  
             | {{priceTotal}}
-        span.font-light.text-xs.pt-5 Der Gesamtbetrag ist ein Richtpreis. Jedes Stück wird vom Fleischermeister per Hand geschnitten und kann somit im Gewicht variieren.
+        span.font-light.text-xs.pt-5 Jedes Stück wird per Hand vom Fleischermeister geschnitten und kann im Gewicht variieren, der Gesamtpreis ist ein Richtpreis und wird bei der Auslieferung nach dem tatsächlichen Gewicht berechnet.
         fieldset
           legend.sr-only Checkbox variants
           .flex.items-center.mb-4.pt-10
