@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-  InfoBlock.p-5(id="liste" ,title="Danke" ,subtitle="Liefertermin 19. Mai 2022", text="Danke für deine Vorbestellung, du wirst persönlich über die Lieferung informiert. ")
+  InfoBlock.p-5(id="liste" ,title="Danke" ,subtitle="Liefertermin 18. August 2022", text="Danke für deine Vorbestellung, du wirst persönlich über die Lieferung informiert. ")
   ImgBlock( image="PEMBEEF_bg_Sonnenuntergang.jpg")
 </template>
 
